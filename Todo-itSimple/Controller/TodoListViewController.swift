@@ -139,6 +139,7 @@ class TodoListViewController: SwipeTableViewController {
         
         
         alert.addTextField { (alertTextField) in
+            alertTextField.autocapitalizationType = .sentences
             alertTextField.placeholder = "Create new item"
             textField = alertTextField
         }
@@ -197,10 +198,11 @@ extension TodoListViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
+        loadItems()
+        
         itemArray = itemArray?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "dateCreated", ascending: true)
         
         tableView.reloadData()
-        
         
         if searchBar.text?.count == 0 {
             loadItems()
@@ -209,6 +211,7 @@ extension TodoListViewController: UISearchBarDelegate {
             }
         }
     }
+
     
 }
 

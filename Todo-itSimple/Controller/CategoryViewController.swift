@@ -76,8 +76,8 @@ class CategoryViewController: SwipeTableViewController {
         let alert = UIAlertController(title: "Add New Category", message: "", preferredStyle: .alert)
         
         let action = UIAlertAction(title: "Add", style: .default) { (action) in
+            
             if textField.text != "" {
-                
                 let newCategory = Category()
                 newCategory.name = textField.text!
                 newCategory.color = RandomFlatColor().hexValue()
@@ -87,9 +87,11 @@ class CategoryViewController: SwipeTableViewController {
             } else {
                 print("Nothing added!")
             }
+            
         }
         
         alert.addTextField { (alertTextField) in
+            alertTextField.autocapitalizationType = .sentences
             alertTextField.placeholder = "Create new category"
             textField = alertTextField
         }
